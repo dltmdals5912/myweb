@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="styles.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>아구몬은 귀엽다</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <h1>
@@ -12,7 +12,6 @@
       아구몬
     </a>은 귀엽다
   </h1>
-
   <p>
     그건 아주 명백한 사실이고 불변의 법칙이다.<br>
     아구몬의 뒤뚱뒤뚱 걷는 모습은 마치 오리와도 같다.
@@ -20,35 +19,57 @@
 
   <h2 id="pixelize">아구몬의 픽셀화</h2>
   <h2 id="evolve">아구몬 진화</h2>
-  <!-- 추가된 구몬 텍스트 -->
   <h2 id="kumon">아구몬 학습</h2>
 
+  <div id="character">
+    <div class="head">
+      <div class="eye left-eye"><div class="pupil"></div></div>
+      <div class="eye right-eye"><div class="pupil"></div></div>
+      <div class="mouth"></div>
+    </div>
+    <div class="body"></div>
+  </div>
+
   <script>
-    const body = document.body;
-    const origBg = getComputedStyle(body).background;
+    const bodyEl = document.body;
+    const origBg = getComputedStyle(bodyEl).background;
 
-    // 픽셀화
+    function setBg(url) {
+      bodyEl.style.background = `url('${url}') center/cover no-repeat fixed`;
+    }
+    function resetBg() {
+      bodyEl.style.background = origBg;
+    }
+
     document.getElementById('pixelize').addEventListener('mouseover', () => {
-      body.style.background = "url('https://i.pinimg.com/736x/12/2a/30/122a302738456a96b4a7927f7329d38e.jpg') center/cover no-repeat fixed";
+      setBg('https://i.pinimg.com/736x/12/2a/30/122a302738456a96b4a7927f7329d38e.jpg');
     });
-    document.getElementById('pixelize').addEventListener('mouseout', () => {
-      body.style.background = origBg;
-    });
+    document.getElementById('pixelize').addEventListener('mouseout', resetBg);
 
-    // 진화
     document.getElementById('evolve').addEventListener('mouseover', () => {
-      body.style.background = "url('https://dcimg1.dcinside.com/viewimage.php?id=29b4d72fe8dd36ab6facc2b004c2&no=24b0d769e1d32ca73fe886fa1bd62531b19a96f1cd404ede18aa6cde17cb728ffd3478f132ff07f13a6e36a1c7cb5c7304f3cefe83a5873bd4de91462182e7f5cf131ce9c427&orgExt') center/cover no-repeat fixed";
+      setBg('https://dcimg1.dcinside.com/viewimage.php?id=29b4d72fe8dd36ab6facc2b004c2&no=24b0d769e1d32ca73fe886fa1bd62531b19a96f1cd404ede18aa6cde17cb728ffd3478f132ff07f13a6e36a1c7cb5c7304f3cefe83a5873bd4de91462182e7f5cf131ce9c427&orgExt');
     });
-    document.getElementById('evolve').addEventListener('mouseout', () => {
-      body.style.background = origBg;
-    });
+    document.getElementById('evolve').addEventListener('mouseout', resetBg);
 
-    // 구몬
     document.getElementById('kumon').addEventListener('mouseover', () => {
-      body.style.background = "url('https://play-lh.googleusercontent.com/UtGzQPbhUwUnmU1zRLsFA5mFCDj5Wao-EjqVs2d6yRfKrFTG5SbMNHl0aYD63vwov_0') center/cover no-repeat fixed";
+      setBg('https://play-lh.googleusercontent.com/UtGzQPbhUwUnmU1zRLsFA5mFCDj5Wao-EjqVs2d6yRfKrFTG5SbMNHl0aYD63vwov_0');
     });
-    document.getElementById('kumon').addEventListener('mouseout', () => {
-      body.style.background = origBg;
+    document.getElementById('kumon').addEventListener('mouseout', resetBg);
+
+    const pupils = document.querySelectorAll('#character .pupil');
+    document.addEventListener('mousemove', e => {
+      pupils.forEach(pupil => {
+        const eye   = pupil.parentElement;
+        const rect  = eye.getBoundingClientRect();
+        const eyeX  = rect.left + rect.width / 2;
+        const eyeY  = rect.top  + rect.height / 2;
+        const dx    = e.clientX - eyeX;
+        const dy    = e.clientY - eyeY;
+        const dist  = Math.hypot(dx, dy);
+        const max   = rect.width/2 - 5;
+        const ratio = dist < max ? 1 : max / dist;
+        pupil.style.transform = `translate(${dx*ratio}px, ${dy*ratio}px)`;
+      });
     });
   </script>
 </body>
