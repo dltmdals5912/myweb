@@ -64,3 +64,14 @@ h2#pixelize {
   h2:hover {
     opacity: 0.85;
   }
+  h2 {
+    margin-top: 2rem;
+    font-size: 2rem;
+    z-index: 1;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0,0,0,0.7);
+    cursor: pointer;
+  }
+  h2:hover {
+    opacity: 0.85;
+  }

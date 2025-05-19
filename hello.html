@@ -18,37 +18,37 @@
     아구몬의 뒤뚱뒤뚱 걷는 모습은 마치 오리와도 같다.
   </p>
 
-  <!-- 픽셀화 텍스트 -->
   <h2 id="pixelize">아구몬의 픽셀화</h2>
-  <!-- 진화 텍스트 -->
   <h2 id="evolve">아구몬 진화</h2>
+  <!-- 추가된 구몬 텍스트 -->
+  <h2 id="kumon">구몬</h2>
 
   <script>
-    // 원래 배경 스타일 저장
-    const origBg = getComputedStyle(document.body).background;
+    const body = document.body;
+    const origBg = getComputedStyle(body).background;
 
     // 픽셀화
-    const pixelize = document.getElementById('pixelize');
-    pixelize.addEventListener('mouseover', () => {
-      document.body.style.background = `
-        url('https://i.pinimg.com/736x/12/2a/30/122a302738456a96b4a7927f7329d38e.jpg')
-        center/cover no-repeat fixed
-      `;
+    document.getElementById('pixelize').addEventListener('mouseover', () => {
+      body.style.background = "url('https://i.pinimg.com/736x/12/2a/30/122a302738456a96b4a7927f7329d38e.jpg') center/cover no-repeat fixed";
     });
-    pixelize.addEventListener('mouseout', () => {
-      document.body.style.background = origBg;
+    document.getElementById('pixelize').addEventListener('mouseout', () => {
+      body.style.background = origBg;
     });
 
     // 진화
-    const evolve = document.getElementById('evolve');
-    evolve.addEventListener('mouseover', () => {
-      document.body.style.background = `
-        url('https://dcimg1.dcinside.com/viewimage.php?id=29b4d72fe8dd36ab6facc2b004c2&no=24b0d769e1d32ca73fe886fa1bd62531b19a96f1cd404ede18aa6cde17cb728ffd3478f132ff07f13a6e36a1c7cb5c7304f3cefe83a5873bd4de91462182e7f5cf131ce9c427&orgExt')
-        center/cover no-repeat fixed
-      `;
+    document.getElementById('evolve').addEventListener('mouseover', () => {
+      body.style.background = "url('https://dcimg1.dcinside.com/viewimage.php?id=29b4d72fe8dd36ab6facc2b004c2&no=24b0d769e1d32ca73fe886fa1bd62531b19a96f1cd404ede18aa6cde17cb728ffd3478f132ff07f13a6e36a1c7cb5c7304f3cefe83a5873bd4de91462182e7f5cf131ce9c427&orgExt') center/cover no-repeat fixed";
     });
-    evolve.addEventListener('mouseout', () => {
-      document.body.style.background = origBg;
+    document.getElementById('evolve').addEventListener('mouseout', () => {
+      body.style.background = origBg;
+    });
+
+    // 구몬
+    document.getElementById('kumon').addEventListener('mouseover', () => {
+      body.style.background = "url('https://play-lh.googleusercontent.com/UtGzQPbhUwUnmU1zRLsFA5mFCDj5Wao-EjqVs2d6yRfKrFTG5SbMNHl0aYD63vwov_0') center/cover no-repeat fixed";
+    });
+    document.getElementById('kumon').addEventListener('mouseout', () => {
+      body.style.background = origBg;
     });
   </script>
 </body>
