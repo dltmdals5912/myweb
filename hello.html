@@ -2,59 +2,54 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>아구몬은 귀엽다</title>
-  <style>
-    /* 배경 이미지 및 오버레이 */
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: url('https://i.pinimg.com/736x/86/19/2f/86192f43b1a4ceaf0b5552758b9055b8.jpg') center/cover no-repeat fixed;
-      font-family: 'Pretendard', sans-serif;
-      color: #fff;
-      position: relative;
-      text-align: center;
-    }
-    body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 0;
-    }
-    /* 제목 스타일 */
-    h1 {
-      margin: 0;
-      font-size: 3rem;
-      z-index: 1;
-      text-shadow: 0 0 10px rgba(0,0,0,0.7);
-      letter-spacing: 2px;
-    }
-    h1 a {
-      color: #fff;
-      text-decoration: underline;
-    }
-    /* 문단 스타일 */
-    p {
-      margin: 1rem 0 0;
-      font-size: 1.25rem;
-      line-height: 1.6;
-      max-width: 600px;
-      z-index: 1;
-      padding: 0 1rem;
-    }
-  </style>
 </head>
 <body>
-  <h1><a href="https://namu.wiki/w/%EC%95%84%EA%B5%AC%EB%AA%AC" target="_blank">아구몬</a>은 귀엽다</h1>
+  <h1>
+    <a href="https://namu.wiki/w/%EC%95%84%EA%B5%AC%EB%AA%AC" target="_blank">
+      아구몬
+    </a>은 귀엽다
+  </h1>
+
   <p>
     그건 아주 명백한 사실이고 불변의 법칙이다.<br>
     아구몬의 뒤뚱뒤뚱 걷는 모습은 마치 오리와도 같다.
   </p>
+
+  <!-- 픽셀화 텍스트 -->
+  <h2 id="pixelize">아구몬의 픽셀화</h2>
+  <!-- 진화 텍스트 -->
+  <h2 id="evolve">아구몬 진화</h2>
+
+  <script>
+    // 원래 배경 스타일 저장
+    const origBg = getComputedStyle(document.body).background;
+
+    // 픽셀화
+    const pixelize = document.getElementById('pixelize');
+    pixelize.addEventListener('mouseover', () => {
+      document.body.style.background = `
+        url('https://i.pinimg.com/736x/12/2a/30/122a302738456a96b4a7927f7329d38e.jpg')
+        center/cover no-repeat fixed
+      `;
+    });
+    pixelize.addEventListener('mouseout', () => {
+      document.body.style.background = origBg;
+    });
+
+    // 진화
+    const evolve = document.getElementById('evolve');
+    evolve.addEventListener('mouseover', () => {
+      document.body.style.background = `
+        url('https://dcimg1.dcinside.com/viewimage.php?id=29b4d72fe8dd36ab6facc2b004c2&no=24b0d769e1d32ca73fe886fa1bd62531b19a96f1cd404ede18aa6cde17cb728ffd3478f132ff07f13a6e36a1c7cb5c7304f3cefe83a5873bd4de91462182e7f5cf131ce9c427&orgExt')
+        center/cover no-repeat fixed
+      `;
+    });
+    evolve.addEventListener('mouseout', () => {
+      document.body.style.background = origBg;
+    });
+  </script>
 </body>
 </html>
