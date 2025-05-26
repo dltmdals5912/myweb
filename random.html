@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>랜덤 A/B 그룹 배정기</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 480px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      line-height: 1.5;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      box-sizing: border-box;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .group {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .group h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+    .group ul {
+      margin: 0.5rem 0 0 1rem;
+      padding: 0;
+    }
+    .group li {
+      list-style: disc;
+    }
+  </style>
+</head>
+<body>
+  <h1>랜덤 A/B 그룹 배정기</h1>
+
+  <label for="items">입력값 (쉼표로 구분)</label>
+  <input id="items" placeholder="예) 민수, 철수, 영희, 영수" />
+
+  <button id="runBtn">그룹 배정 실행</button>
+
+  <div id="result">
+    <!-- 결과가 여기에 표시됩니다 -->
+  </div>
+
+  <script>
+    const runBtn = document.getElementById('runBtn');
+    const itemsInput = document.getElementById('items');
+    const resultDiv = document.getElementById('result');
+
+    runBtn.addEventListener('click', () => {
+      // 1) 입력값 파싱
+      const raw = itemsInput.value;
+      const list = raw
+        .split(',')
+        .map(s => s.trim())
+        .filter(s => s);
+      
+      if (list.length < 2) {
+        alert('항목을 최소 2개 이상 쉼표로 구분하여 입력하세요.');
+        return;
+      }
+
+      // 2) 랜덤으로 A/B 그룹에 배정
+      const groupA = [];
+      const groupB = [];
+      list.forEach(item => {
+        if (Math.random() < 0.5) groupA.push(item);
+        else                   groupB.push(item);
+      });
+
+      // 3) 결과 출력
+      resultDiv.innerHTML = `
+        <div class="group">
+          <h2>그룹 A (${groupA.length}명)</h2>
+          <ul>${groupA.map(x => `<li>${x}</li>`).join('')}</ul>
+        </div>
+        <div class="group">
+          <h2>그룹 B (${groupB.length}명)</h2>
+          <ul>${groupB.map(x => `<li>${x}</li>`).join('')}</ul>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>
